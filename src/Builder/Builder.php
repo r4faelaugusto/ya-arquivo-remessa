@@ -11,14 +11,15 @@ class Builder
     /**
      * arquivo que contem os dados da geracao do boleto
      */
-    const CONFIG_FILE = "src/config/params.yml";
+    const CONFIG_FILE = "/../config/params.yml";
 
     /**
      * @param int $bancoIdentificador
      */
     public function __construct(int $bancoIdentificador)
     {
-        if (!file_exists(self::CONFIG_FILE)) {
+        $fileconfig = dirname(__FILE__) . self::CONFIG_FILE;
+        if (!file_exists($fileconfig)) {
             throw new \Exception('Arquivo de configuração nao localizado: {self::CONFIG_FILE}');
         }
 
@@ -32,13 +33,14 @@ class Builder
      */
     private function carregarDadosBoletoBanco(int $bancoIdentificador)
     {
+        $fileconfig = dirname(__FILE__) . self::CONFIG_FILE;
         switch ($bancoIdentificador) {
             case BancoEnum::BRADESCO:
-                $this->dadosBoleto = Yaml::parseFile(self::CONFIG_FILE)['cnab400']['bradesco'];
+                $this->dadosBoleto = Yaml::parseFile($fileconfig)['cnab400']['bradesco'];
                 break;
 
             case BancoEnum::SICOOB:
-                $this->dadosBoleto = Yaml::parseFile(self::CONFIG_FILE)['cnab400']['sicoob'];
+                $this->dadosBoleto = Yaml::parseFile($fileconfig)['cnab400']['sicoob'];
                 break;
 
             default:
