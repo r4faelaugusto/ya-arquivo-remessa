@@ -11,7 +11,7 @@ class Validator
     /**
      * arquivo que contem os dados da geracao do boleto
      */
-    const CONFIG_FILE = "src/config/validator.yml";
+    const CONFIG_FILE = "/../config/validator.yml";
 
     /**
      * @var array
@@ -29,8 +29,10 @@ class Validator
      */
     public function __construct(int $bancoIdentificador)
     {
-        if (!file_exists(self::CONFIG_FILE)) {
-            throw new \Exception('Arquivo de configuração nao localizado: {self::CONFIG_FILE}');
+        $fileconfig = dirname(__FILE__) . self::CONFIG_FILE;
+
+        if (!file_exists($fileconfig)) {
+            throw new \Exception("Arquivo de configuração nao localizado: {$fileconfig}");
         }
 
         $this->loadDataValidator($bancoIdentificador);
@@ -45,11 +47,11 @@ class Validator
     {
         switch ($bancoIdentificador) {
             case BancoEnum::BRADESCO:
-                $this->dataValidator = Yaml::parseFile(self::CONFIG_FILE)['bradesco'];
+                $this->dataValidator = Yaml::parseFile(dirname(__FILE__) . self::CONFIG_FILE)['bradesco'];
                 break;
 
             case BancoEnum::SICOOB:
-                $this->dataValidator = Yaml::parseFile(self::CONFIG_FILE)['sicoob'];
+                $this->dataValidator = Yaml::parseFile(dirname(__FILE__) . self::CONFIG_FILE)['sicoob'];
                 break;
 
             default:
