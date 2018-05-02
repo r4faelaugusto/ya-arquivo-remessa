@@ -10,7 +10,7 @@ bradesco:
         nome:
       orgao:
         pessoa:
-          cpfCnpj:
+          cnpj:
         municipio:
           nome:
           uf:
@@ -42,7 +42,7 @@ sicoob:
       conta:
       orgao:
         pessoa:
-          cpfCnpj:
+          cnpj:
         descricao:
   transacoes:
     SEQ:
