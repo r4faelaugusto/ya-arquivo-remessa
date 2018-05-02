@@ -107,8 +107,8 @@ class SicoobCnab400Builder extends Builder
 
         $header = new Header();
 
-        $header->setCodigoCliente(substr($convenioBancario['cedente'],0,-1));
-        $header->setDigitoVerificadorCodigo(substr($convenioBancario['cedente'],-1));
+        $header->setCodigoCliente(substr($convenioBancario['convenio'],0,-1));
+        $header->setDigitoVerificadorCodigo(substr($convenioBancario['convenio'],-1));
 
         $header->setSequencialRegistro(1);
         $header->setPrefixoCooperativa($convenioBancario['agencia']);
