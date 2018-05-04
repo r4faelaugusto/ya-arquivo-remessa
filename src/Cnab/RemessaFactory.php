@@ -44,8 +44,22 @@ class RemessaFactory
                 ->remessaFile;
 
         } catch (\Exception $e) {
+
+            if (file_exists($this->remessaFile)) {
+                /**
+                 * remover arquivo caso de seja lançado alguma excessao apos a geração do arquivo
+                 */
+                unlink($this->remessaFile);
+            }
             throw $e;
         } catch (\TypeError $typeError) {
+
+            if (file_exists($this->remessaFile)) {
+                /**
+                 * remover arquivo caso de seja lançado alguma excessao apos a geração do arquivo
+                 */
+                unlink($this->remessaFile);
+            }
             throw $typeError;
         }
     }
