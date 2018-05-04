@@ -35,21 +35,18 @@ class RemessaFactory
     public function create(string $path, int $bancoIdentificador, array $dadosArrecadacao)
     {
         try {
-
             return $this
                 ->validarDadosBoleto($bancoIdentificador, $dadosArrecadacao)
                 ->path($path)
                 ->configure($bancoIdentificador, $dadosArrecadacao)
                 ->build()
                 ->createFile()
-                ->remessaFile
-            ;
+                ->remessaFile;
+
         } catch (\Exception $e) {
-            var_dump($e);
-            exit;
+            throw $e;
         } catch (\TypeError $typeError) {
-            var_dump($typeError);
-            exit;
+            throw $typeError;
         }
     }
 
