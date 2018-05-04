@@ -66,8 +66,8 @@ class SicoobCnab400Builder extends Builder
             $detalhe->setDataEmissao((new \DateTime($documento['dataEmissao']))->format('dmy'));
 
             /** dados do convenio */
-            $detalhe->setTipoInscricaoBeneficiario(strlen($convenioBancario['orgao']['pessoa']['cpfCnpj']) > 11 ? "02" : "01");
-            $detalhe->setCpfcnpjBeneficiario($convenioBancario['orgao']['pessoa']['cpfCnpj']);
+            $detalhe->setTipoInscricaoBeneficiario(strlen($convenioBancario['orgao']['pessoa']['cnpj']) > 11 ? "02" : "01");
+            $detalhe->setCpfcnpjBeneficiario($convenioBancario['orgao']['pessoa']['cnpj']);
 
             $detalhe->setPrefixoCooperativa($convenioBancario['agencia']);
             $detalhe->setDigitoVerificadorPrefixoCooperativa($convenioBancario['digitoAgencia']);
